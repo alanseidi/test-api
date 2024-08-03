@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/index', function () {
+Route::get('/', function () {
     return [
         'Laravel' => app()->version(),
         'API' => env('APP_NAME', 'App'),
