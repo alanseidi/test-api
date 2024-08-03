@@ -8,3 +8,6 @@ update:
 
 start:
 	./vendor/bin/sail up
+
+swagger:
+	./vendor/bin/sail artisan l5-swagger:generate
