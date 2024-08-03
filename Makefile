@@ -36,6 +36,9 @@ model:
 resource:
 	./vendor/bin/sail artisan make:resource
 
+request:
+	./vendor/bin/sail artisan make:request
+
 migration:
 	./vendor/bin/sail artisan make:migration
 

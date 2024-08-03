@@ -11,8 +11,7 @@ Route::get('/', function () {
     ];
 });
 
-Route::get('/test', [\App\Http\Controllers\TesteController::class, 'index']);
-
 Route::get('/user', function (Request $request) {
     return 'user route';
 });
+
