@@ -20,7 +20,10 @@ class LivroAutorService
         DB::beginTransaction();
         try {
             $livro = Livro::find($data['codL']);
-            $livro->autores()->sync($data['arrayCodAu']);
+            if (is_null($livro)) {
+                throw new \Exception('Livro não encontrado');
+            }
+            $livro->autores()->sync($data['arrayCodAu'] ?? []);
 
             DB::commit();
 
@@ -39,7 +42,10 @@ class LivroAutorService
         DB::beginTransaction();
         try {
             $autor = Autor::find($data['codAu']);
-            $autor->livros()->sync($data['arrayCodL']);
+            if (is_null($autor)) {
+                throw new \Exception('Autor não encontrado');
+            }
+            $autor->livros()->sync($data['arrayCodL'] ?? []);
 
             DB::commit();
 

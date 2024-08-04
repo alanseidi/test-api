@@ -60,7 +60,7 @@ class AutorController extends Controller
     {
         $request->validate([
             'codAu' => 'required|numeric|exists:autor,codAu',
-            'arrayCodL' => 'required|array',
+            'arrayCodL' => 'array',
             'arrayCodL.*' => 'required|numeric|exists:livro,codL',
         ]);
         $data = $request->all();

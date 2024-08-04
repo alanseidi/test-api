@@ -18,7 +18,10 @@ class LivroAssuntoService
         DB::beginTransaction();
         try {
             $livro = Livro::find($data['codL']);
-            $livro->assuntos()->sync($data['arrayCodAs']);
+            if (is_null($livro)) {
+                throw new \Exception('Livro não encontrado');
+            }
+            $livro->assuntos()->sync($data['arrayCodAs'] ?? []);
 
             DB::commit();
 
@@ -37,7 +40,10 @@ class LivroAssuntoService
         DB::beginTransaction();
         try {
             $assunto = Assunto::find($data['codAs']);
-            $assunto->livros()->sync($data['arrayCodL']);
+            if (is_null($assunto)) {
+                throw new \Exception('Assunto não encontrado');
+            }
+            $assunto->livros()->sync($data['arrayCodL'] ?? []);
 
             DB::commit();
 
