@@ -27,6 +27,7 @@ class LivroRequest extends FormRequest
             'editora' => 'required|string|max:40',
             'edicao' => 'required|integer',
             'anoPublicacao' => 'required|integer|digits:4|max:'.Carbon::today()->year,
+            'preco' => 'required|numeric',
         ];
     }
 }

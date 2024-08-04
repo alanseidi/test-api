@@ -20,6 +20,7 @@ class LivroTest extends TestCase
         'editora',
         'edicao',
         'anoPublicacao',
+        'preco'
     ];
 
     public function test_list_rout_accessible(): void
@@ -50,6 +51,7 @@ class LivroTest extends TestCase
                     ->whereType('editora', 'string')
                     ->whereType('edicao', 'integer')
                     ->whereType('anoPublicacao', 'string')
+                    ->whereType('preco', 'double')
                     ->whereType('autores', 'array')
                 )
             );
@@ -73,7 +75,8 @@ class LivroTest extends TestCase
             'titulo' => $this->faker->text(30),
             'editora' => $this->faker->text(30),
             'edicao' => $this->faker->numberBetween(100, 9999),
-            'anoPublicacao' => $this->faker->year()
+            'anoPublicacao' => $this->faker->year(),
+            'preco' => $this->faker->randomFloat(2, 10, 10000),
         ];
     }
 
@@ -90,6 +93,7 @@ class LivroTest extends TestCase
                 ->has('errors.editora')
                 ->has('errors.edicao')
                 ->has('errors.anoPublicacao')
+                ->has('errors.preco')
             );
 
         $response = $this->withHeaders(['Accept' => 'application/json'])
@@ -103,6 +107,7 @@ class LivroTest extends TestCase
                 ->has('errors.editora')
                 ->has('errors.edicao')
                 ->has('errors.anoPublicacao')
+                ->has('errors.preco')
             );
     }
 
@@ -112,7 +117,8 @@ class LivroTest extends TestCase
             'titulo' => $this->faker->realTextBetween(50),
             'editora' => $this->faker->realTextBetween(50),
             'edicao' => $this->faker->word(),
-            'anoPublicacao' => $this->faker->numberBetween(10000, 99999)
+            'anoPublicacao' => $this->faker->numberBetween(10000, 99999),
+            'preco' => $this->faker->word(),
         ];
     }
 
@@ -165,6 +171,7 @@ class LivroTest extends TestCase
             'editora' => $this->faker->text(30),
             'edicao' => $this->faker->numberBetween(100, 9999),
             'anoPublicacao' => $this->faker->year(),
+            'preco' => $this->faker->randomFloat(2, 10, 10000),
         ];
         $response = $this->withHeaders(['Accept' => 'application/json'])
             ->put($this->url.'/'.$data->{$this->primaryKey}, $arrDataSave);

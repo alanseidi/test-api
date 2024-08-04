@@ -19,6 +19,11 @@ class Livro extends Model
         'editora',
         'edicao',
         'anoPublicacao',
+        'preco'
+    ];
+
+    protected $casts = [
+        'preco' => 'float'
     ];
 
 

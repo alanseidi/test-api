@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('editora', 40);
             $table->integer('edicao');
             $table->string('anoPublicacao', 4);
+            $table->decimal('preco', 9, 2);
             $table->timestamps();
             $table->softDeletes();
         });

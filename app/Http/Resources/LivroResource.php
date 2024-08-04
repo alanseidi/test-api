@@ -20,6 +20,7 @@ class LivroResource extends JsonResource
             'editora' => $this->editora,
             'edicao' => $this->edicao,
             'anoPublicacao' => $this->anoPublicacao,
+            'preco' => $this->preco,
             'autores' => array_map(function ($autor) {
                 return [
                     'codAu' => $autor['codAu'],
