@@ -64,7 +64,7 @@ class AutorTest extends TestCase
     protected function getFakeData()
     {
         return [
-            'nome' => $this->faker->text(30)
+            'nome' => $this->faker->firstName()
         ];
     }
 

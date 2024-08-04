@@ -19,3 +19,6 @@ Route::post('/livro/associar-autor', 'App\Http\Controllers\LivroController@conne
 Route::post('/livro/associar-assunto', 'App\Http\Controllers\LivroController@connectAssunto');
 Route::post('/autor/associar-livro', 'App\Http\Controllers\AutorController@connectLivro');
 Route::post('/assunto/associar-livro', 'App\Http\Controllers\AssuntoController@connectLivro');
+
+
+Route::get('/relatorio', 'App\Http\Controllers\RelatorioController@getRelatorio');

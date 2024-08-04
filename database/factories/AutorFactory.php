@@ -17,7 +17,7 @@ class AutorFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->text(30),
+            'nome' => $this->faker->firstName().' '.$this->faker->lastName(),
         ];
     }
 }
