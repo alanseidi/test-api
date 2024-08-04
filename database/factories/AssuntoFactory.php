@@ -17,7 +17,7 @@ class AssuntoFactory extends Factory
     public function definition(): array
     {
         return [
-            'descricao' => $this->faker->text(20),
+            'descricao' => $this->faker->word(),
         ];
     }
 }
