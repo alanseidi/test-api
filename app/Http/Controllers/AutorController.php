@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AutorRequest;
 use App\Http\Resources\AutorResource;
+use App\Http\Resources\LivroResource;
 use App\Models\Autor;
+use App\Services\LivroAutorService;
 use Illuminate\Http\Request;
 
 class AutorController extends Controller
@@ -51,5 +53,19 @@ class AutorController extends Controller
     {
         $autor->delete();
         return response(null, 204);
+    }
+
+
+    public function connectLivro(Request $request)
+    {
+        $request->validate([
+            'codAu' => 'required|numeric|exists:autor,codAu',
+            'arrayCodL' => 'required|array',
+            'arrayCodL.*' => 'required|numeric|exists:livro,codL',
+        ]);
+        $data = $request->all();
+        $livroAutorService = new LivroAutorService();
+        $autor = $livroAutorService->syncAutorLivro($data);
+        return new AutorResource($autor);
     }
 }

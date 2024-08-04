@@ -20,7 +20,12 @@ class LivroResource extends JsonResource
             'editora' => $this->editora,
             'edicao' => $this->edicao,
             'anoPublicacao' => $this->anoPublicacao,
-            'autores' => AutorResource::collection($this->autores)
+            'autores' => array_map(function ($autor) {
+                return [
+                    'codAu' => $autor['codAu'],
+                    'nome' => $autor['nome'],
+                ];
+            }, $this->autores->toArray()),
         ];
     }
 }

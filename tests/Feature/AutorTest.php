@@ -44,6 +44,7 @@ class AutorTest extends TestCase
                 ->has('data.0', fn(AssertableJson $json) => $json
                     ->whereType('nome', 'string')
                     ->whereType($this->primaryKey, 'integer')
+                    ->whereType('livros', 'array')
                 )
             );
     }

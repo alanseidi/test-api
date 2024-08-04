@@ -30,4 +30,23 @@ class LivroAutorService
             throw new SyncFailException('Falha ao associar o(s) autor(es) ao livro: '.$e->getMessage());
         }
     }
+
+    /**
+     * @throws SyncFailException
+     */
+    public function syncAutorLivro($data)
+    {
+        DB::beginTransaction();
+        try {
+            $autor = Autor::find($data['codAu']);
+            $autor->livros()->sync($data['arrayCodL']);
+
+            DB::commit();
+
+            return $autor;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw new SyncFailException('Falha ao associar o(s) livro(s) ao autor: '.$e->getMessage());
+        }
+    }
 }

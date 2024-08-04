@@ -16,7 +16,16 @@ class AutorResource extends JsonResource
     {
         return [
             'codAu' => $this->codAu,
-            'nome' => $this->nome
+            'nome' => $this->nome,
+            'livros' => array_map(function ($livro) {
+                return [
+                    'codL' => $livro['codL'],
+                    'titulo' => $livro['titulo'],
+                    'editora' => $livro['editora'],
+                    'edicao' => $livro['edicao'],
+                    'anoPublicacao' => $livro['anoPublicacao'],
+                ];
+            }, $this->livros->toArray()),
         ];
     }
 
