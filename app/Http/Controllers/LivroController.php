@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LivroRequest;
 use App\Http\Resources\LivroResource;
 use App\Models\Livro;
+use App\Services\LivroAutorService;
 use Illuminate\Http\Request;
 
 class LivroController extends Controller
@@ -51,5 +52,18 @@ class LivroController extends Controller
     {
         $livro->delete();
         return response(null, 204);
+    }
+
+    public function connectAutor(Request $request)
+    {
+        $request->validate([
+            'codL' => 'required|numeric|exists:livro,codL',
+            'arrayCodAu' => 'required|array',
+            'arrayCodAu.*' => 'required|numeric|exists:autor,codAu',
+        ]);
+        $data = $request->all();
+        $livroAutorService = new LivroAutorService();
+        $livro = $livroAutorService->syncLivroAutor($data);
+        return new LivroResource($livro);
     }
 }

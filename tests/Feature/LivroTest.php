@@ -51,6 +51,7 @@ class LivroTest extends TestCase
                     ->whereType('editora', 'string')
                     ->whereType('edicao', 'integer')
                     ->whereType('anoPublicacao', 'string')
+                    ->whereType('autores', 'array')
                 )
             );
     }

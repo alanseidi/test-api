@@ -20,6 +20,7 @@ class LivroResource extends JsonResource
             'editora' => $this->editora,
             'edicao' => $this->edicao,
             'anoPublicacao' => $this->anoPublicacao,
+            'autores' => AutorResource::collection($this->autores)
         ];
     }
 }
