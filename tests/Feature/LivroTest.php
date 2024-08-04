@@ -4,11 +4,14 @@ namespace Tests\Feature;
 
 use App\Models\Livro;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class LivroTest extends TestCase
 {
+    use WithFaker;
+
     protected $url = '/api/livro';
 
     protected string $primaryKey = 'codL';
@@ -66,12 +69,11 @@ class LivroTest extends TestCase
 
     protected function getFakeData()
     {
-        $faker = Factory::create();
         return [
-            'titulo' => $faker->text(30),
-            'editora' => $faker->text(30),
-            'edicao' => $faker->numberBetween(100, 9999),
-            'anoPublicacao' => $faker->year()
+            'titulo' => $this->faker->text(30),
+            'editora' => $this->faker->text(30),
+            'edicao' => $this->faker->numberBetween(100, 9999),
+            'anoPublicacao' => $this->faker->year()
         ];
     }
 
@@ -106,12 +108,11 @@ class LivroTest extends TestCase
 
     protected function getFakeDataValidation()
     {
-        $faker = Factory::create();
         return [
-            'titulo' => $faker->realTextBetween(50),
-            'editora' => $faker->realTextBetween(50),
-            'edicao' => $faker->word(),
-            'anoPublicacao' => $faker->numberBetween(10000, 99999)
+            'titulo' => $this->faker->realTextBetween(50),
+            'editora' => $this->faker->realTextBetween(50),
+            'edicao' => $this->faker->word(),
+            'anoPublicacao' => $this->faker->numberBetween(10000, 99999)
         ];
     }
 
@@ -159,12 +160,11 @@ class LivroTest extends TestCase
     public function test_update_data(): void
     {
         $data = $this->factoryDataCreate();
-        $faker = Factory::create();
         $arrDataSave = [
-            'titulo' => $faker->text(30),
-            'editora' => $faker->text(30),
-            'edicao' => $faker->numberBetween(100, 9999),
-            'anoPublicacao' => $faker->year(),
+            'titulo' => $this->faker->text(30),
+            'editora' => $this->faker->text(30),
+            'edicao' => $this->faker->numberBetween(100, 9999),
+            'anoPublicacao' => $this->faker->year(),
         ];
         $response = $this->withHeaders(['Accept' => 'application/json'])
             ->put($this->url.'/'.$data->{$this->primaryKey}, $arrDataSave);

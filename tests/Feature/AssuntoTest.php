@@ -3,12 +3,14 @@
 namespace Tests\Feature;
 
 use App\Models\Assunto;
-use Faker\Factory;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class AssuntoTest extends TestCase
 {
+    use WithFaker;
+
     protected $url = '/api/assunto';
 
     protected string $primaryKey = 'codAs';
@@ -60,9 +62,8 @@ class AssuntoTest extends TestCase
 
     protected function getFakeData()
     {
-        $faker = Factory::create();
         return [
-            'descricao' => $faker->text(20),
+            'descricao' => $this->faker->text(20),
         ];
     }
 
@@ -91,9 +92,8 @@ class AssuntoTest extends TestCase
 
     protected function getFakeDataValidation()
     {
-        $faker = Factory::create();
         return [
-            'descricao' => $faker->realTextBetween(50),
+            'descricao' => $this->faker->realTextBetween(50),
         ];
     }
 
@@ -141,9 +141,8 @@ class AssuntoTest extends TestCase
     public function test_update_data(): void
     {
         $data = $this->factoryDataCreate();
-        $faker = Factory::create();
         $arrDataSave = [
-            'descricao' => $faker->text(20),
+            'descricao' => $this->faker->text(20),
         ];
         $response = $this->withHeaders(['Accept' => 'application/json'])
             ->put($this->url.'/'.$data->{$this->primaryKey}, $arrDataSave);

@@ -4,11 +4,13 @@ namespace Tests\Feature;
 
 use App\Models\Autor;
 use Faker\Factory;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class AutorTest extends TestCase
 {
+    use WithFaker;
 
     protected string $url = '/api/autor';
     protected string $primaryKey = 'codAu';
@@ -60,9 +62,8 @@ class AutorTest extends TestCase
 
     protected function getFakeData()
     {
-        $faker = Factory::create();
         return [
-            'nome' => $faker->text(30)
+            'nome' => $this->faker->text(30)
         ];
     }
 
@@ -89,9 +90,8 @@ class AutorTest extends TestCase
 
     protected function getFakeDataValidation()
     {
-        $faker = Factory::create();
         return [
-            'nome' => $faker->realTextBetween(50)
+            'nome' => $this->faker->realTextBetween(50)
         ];
     }
 
@@ -139,8 +139,7 @@ class AutorTest extends TestCase
     public function test_update_data(): void
     {
         $data = $this->factoryDataCreate();
-        $faker = Factory::create();
-        $name = $faker->text(30);
+        $name = $this->faker->text(30);
         $response = $this->withHeaders(['Accept' => 'application/json'])
             ->put($this->url.'/'.$data->{$this->primaryKey}, [
                 'nome' => $name
