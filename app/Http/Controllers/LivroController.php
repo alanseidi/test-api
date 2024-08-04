@@ -16,7 +16,7 @@ class LivroController extends Controller
      */
     public function index()
     {
-        $livros = Livro::all();
+        $livros = Livro::paginate(20);
         return LivroResource::collection($livros);
     }
 

@@ -17,7 +17,7 @@ class AssuntoController extends Controller
      */
     public function index()
     {
-        $assuntos = Assunto::all();
+        $assuntos = Assunto::paginate(20);
         return AssuntoResource::collection($assuntos);
     }
 

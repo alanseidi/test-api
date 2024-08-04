@@ -16,7 +16,7 @@ class AutorController extends Controller
      */
     public function index()
     {
-        $authors = Autor::all();
+        $authors = Autor::paginate(20);
         return AutorResource::collection($authors);
     }
 

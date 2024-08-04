@@ -40,7 +40,10 @@ class AssuntoTest extends TestCase
                     '*' => $this->dataStructure
                 ]
             ])
-            ->assertJson(fn(AssertableJson $json) => $json->has('data')
+            ->assertJson(fn(AssertableJson $json) => $json
+                ->has('data')
+                ->has('links')
+                ->has('meta')
                 ->has('data.0', fn(AssertableJson $json) => $json
                     ->whereType($this->primaryKey, 'integer')
                     ->whereType('descricao', 'string')
