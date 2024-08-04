@@ -2,19 +2,22 @@
 
 namespace Tests\Feature;
 
-use App\Models\Autor;
+use App\Models\Livro;
 use Faker\Factory;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
-class AutorTest extends TestCase
+class LivroTest extends TestCase
 {
+    protected $url = '/api/livro';
 
-    protected string $url = '/api/autor';
-    protected string $primaryKey = 'codAu';
+    protected string $primaryKey = 'codL';
     protected array $dataStructure = [
-        'codAu',
-        'nome',
+        'codL',
+        'titulo',
+        'editora',
+        'edicao',
+        'anoPublicacao',
     ];
 
     public function test_list_rout_accessible(): void
@@ -40,15 +43,18 @@ class AutorTest extends TestCase
             ])
             ->assertJson(fn(AssertableJson $json) => $json->has('data')
                 ->has('data.0', fn(AssertableJson $json) => $json
-                    ->whereType('nome', 'string')
                     ->whereType($this->primaryKey, 'integer')
+                    ->whereType('titulo', 'string')
+                    ->whereType('editora', 'string')
+                    ->whereType('edicao', 'integer')
+                    ->whereType('anoPublicacao', 'string')
                 )
             );
     }
 
     protected function factoryListDataCreate($total = 10)
     {
-        Autor::factory()->count($total)->create();
+        Livro::factory()->count($total)->create();
     }
 
     public function test_store_data(): void
@@ -62,7 +68,10 @@ class AutorTest extends TestCase
     {
         $faker = Factory::create();
         return [
-            'nome' => $faker->text(30)
+            'titulo' => $faker->text(30),
+            'editora' => $faker->text(30),
+            'edicao' => $faker->numberBetween(100, 9999),
+            'anoPublicacao' => $faker->year()
         ];
     }
 
@@ -72,18 +81,26 @@ class AutorTest extends TestCase
             ->post($this->url, []);
         $response
             ->assertStatus(422)
-            ->assertJson(fn(AssertableJson $json) => $json->has('errors')
-                ->has('errors.nome')
+            ->assertJson(fn(AssertableJson $json) => $json
+                ->has('errors')
                 ->has('message')
+                ->has('errors.titulo')
+                ->has('errors.editora')
+                ->has('errors.edicao')
+                ->has('errors.anoPublicacao')
             );
 
         $response = $this->withHeaders(['Accept' => 'application/json'])
             ->post($this->url, $this->getFakeDataValidation());
         $response
             ->assertStatus(422)
-            ->assertJson(fn(AssertableJson $json) => $json->has('errors')
-                ->has('errors.nome')
+            ->assertJson(fn(AssertableJson $json) => $json
+                ->has('errors')
                 ->has('message')
+                ->has('errors.titulo')
+                ->has('errors.editora')
+                ->has('errors.edicao')
+                ->has('errors.anoPublicacao')
             );
     }
 
@@ -91,7 +108,10 @@ class AutorTest extends TestCase
     {
         $faker = Factory::create();
         return [
-            'nome' => $faker->realTextBetween(50)
+            'titulo' => $faker->realTextBetween(50),
+            'editora' => $faker->realTextBetween(50),
+            'edicao' => $faker->word(),
+            'anoPublicacao' => $faker->numberBetween(10000, 99999)
         ];
     }
 
@@ -117,7 +137,7 @@ class AutorTest extends TestCase
 
     protected function factoryDataCreate()
     {
-        return Autor::factory()->create();
+        return Livro::factory()->create();
     }
 
     public function test_get_data_not_found(): void
@@ -132,7 +152,7 @@ class AutorTest extends TestCase
 
     protected function getLastId()
     {
-        $data = Autor::latest()->first();
+        $data = Livro::latest()->first();
         return $data->{$this->primaryKey};
     }
 
@@ -140,17 +160,19 @@ class AutorTest extends TestCase
     {
         $data = $this->factoryDataCreate();
         $faker = Factory::create();
-        $name = $faker->text(30);
+        $arrDataSave = [
+            'titulo' => $faker->text(30),
+            'editora' => $faker->text(30),
+            'edicao' => $faker->numberBetween(100, 9999),
+            'anoPublicacao' => $faker->year(),
+        ];
         $response = $this->withHeaders(['Accept' => 'application/json'])
-            ->put($this->url.'/'.$data->{$this->primaryKey}, [
-                'nome' => $name
-            ]);
+            ->put($this->url.'/'.$data->{$this->primaryKey}, $arrDataSave);
+
+        $arrDataSave[$this->primaryKey] = $data->{$this->primaryKey};
         $response->assertStatus(200)
             ->assertJson([
-                'data' => [
-                    $this->primaryKey => $data->{$this->primaryKey},
-                    'nome' => $name,
-                ]
+                'data' => $arrDataSave
             ]);
     }
 
@@ -160,13 +182,20 @@ class AutorTest extends TestCase
 
         $response = $this->withHeaders(['Accept' => 'application/json'])
             ->put($this->url.'/'.$data->{$this->primaryKey}, [
-                'nome' => null
+                'titulo' => null,
+                'editora' => null,
+                'edicao' => null,
+                'anoPublicacao' => null,
             ]);
         $response
             ->assertStatus(422)
-            ->assertJson(fn(AssertableJson $json) => $json->has('errors')
-                ->has('errors.nome')
+            ->assertJson(fn(AssertableJson $json) => $json
+                ->has('errors')
                 ->has('message')
+                ->has('errors.titulo')
+                ->has('errors.editora')
+                ->has('errors.edicao')
+                ->has('errors.anoPublicacao')
             );
 
 
