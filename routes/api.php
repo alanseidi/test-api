@@ -13,3 +13,4 @@ Route::get('/', function () {
 
 Route::apiResource('autor', 'App\Http\Controllers\AutorController');
 Route::apiResource('livro', 'App\Http\Controllers\LivroController');
+Route::apiResource('assunto', 'App\Http\Controllers\AssuntoController');
