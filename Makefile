@@ -15,6 +15,7 @@ swagger:
 fresh-seed:
 	./vendor/bin/sail artisan migrate:fresh --seed
 
+
 run-migration:
 	./vendor/bin/sail artisan migrate
 
@@ -44,3 +45,6 @@ migration:
 
 service:
 	./vendor/bin/sail artisan make:class \Services\\$(name)
+
+factory:
+	./vendor/bin/sail artisan make:factory
