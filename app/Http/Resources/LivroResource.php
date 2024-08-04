@@ -21,6 +21,12 @@ class LivroResource extends JsonResource
             'edicao' => $this->edicao,
             'anoPublicacao' => $this->anoPublicacao,
             'preco' => $this->preco,
+            'assuntos' => array_map(function ($ssunto) {
+                return [
+                    'codAs' => $ssunto['codAs'],
+                    'descricao' => $ssunto['descricao'],
+                ];
+            }, $this->assuntos->toArray()),
             'autores' => array_map(function ($autor) {
                 return [
                     'codAu' => $autor['codAu'],

@@ -24,6 +24,7 @@ class AutorResource extends JsonResource
                     'editora' => $livro['editora'],
                     'edicao' => $livro['edicao'],
                     'anoPublicacao' => $livro['anoPublicacao'],
+                    'preco' => $livro['preco'],
                 ];
             }, $this->livros->toArray()),
         ];

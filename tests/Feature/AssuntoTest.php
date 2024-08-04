@@ -44,6 +44,7 @@ class AssuntoTest extends TestCase
                 ->has('data.0', fn(AssertableJson $json) => $json
                     ->whereType($this->primaryKey, 'integer')
                     ->whereType('descricao', 'string')
+                    ->whereType('livros', 'array')
                 )
             );
     }

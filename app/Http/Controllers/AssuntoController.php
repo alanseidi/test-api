@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AssuntoRequest;
 use App\Http\Resources\AssuntoResource;
+use App\Http\Resources\AutorResource;
 use App\Models\Assunto;
+use App\Services\LivroAssuntoService;
+use App\Services\LivroAutorService;
 use Illuminate\Http\Request;
 
 class AssuntoController extends Controller
@@ -51,5 +54,18 @@ class AssuntoController extends Controller
     {
         $assunto->delete();
         return response(null, 204);
+    }
+
+    public function connectLivro(Request $request)
+    {
+        $request->validate([
+            'codAs' => 'required|numeric|exists:assunto,codAs',
+            'arrayCodL' => 'required|array',
+            'arrayCodL.*' => 'required|numeric|exists:livro,codL',
+        ]);
+        $data = $request->all();
+        $livroAssuntoService = new LivroAssuntoService();
+        $assunto = $livroAssuntoService->syncAssuntoLivro($data);
+        return new AssuntoResource($assunto);
     }
 }

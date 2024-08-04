@@ -16,7 +16,17 @@ class AssuntoResource extends JsonResource
     {
         return [
             'codAs' => $this->codAs,
-            'descricao' => $this->descricao
+            'descricao' => $this->descricao,
+            'livros' => array_map(function ($livro) {
+                return [
+                    'codL' => $livro['codL'],
+                    'titulo' => $livro['titulo'],
+                    'editora' => $livro['editora'],
+                    'edicao' => $livro['edicao'],
+                    'anoPublicacao' => $livro['anoPublicacao'],
+                    'preco' => $livro['preco'],
+                ];
+            }, $this->livros->toArray()),
         ];
     }
 }
