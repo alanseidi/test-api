@@ -59,7 +59,7 @@ class LivroController extends Controller
     {
         $request->validate([
             'codL' => 'required|numeric|exists:livro,codL',
-            'arrayCodAu' => 'required|array',
+            'arrayCodAu' => 'array',
             'arrayCodAu.*' => 'required|numeric|exists:autor,codAu',
         ]);
         $data = $request->all();
@@ -72,7 +72,7 @@ class LivroController extends Controller
     {
         $request->validate([
             'codL' => 'required|numeric|exists:livro,codL',
-            'arrayCodAs' => 'required|array',
+            'arrayCodAs' => 'array',
             'arrayCodAs.*' => 'required|numeric|exists:assunto,codAs',
         ]);
         $data = $request->all();
