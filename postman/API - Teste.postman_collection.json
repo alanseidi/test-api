@@ -1,0 +1,733 @@
+{
+	"info": {
+		"_postman_id": "e077e94d-f6a8-4dd1-81fc-8d9a717fd7cd",
+		"name": "API - Teste",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "228925"
+	},
+	"item": [
+		{
+			"name": "Autores",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/autor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"autor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/autor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"autor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nome",
+									"value": "Teste",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/autor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"autor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nome",
+									"value": "Teste up",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/autor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"autor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/api/autor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"autor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Livro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "codAu",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "arrayCodL[0]",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "arrayCodL[1]",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/autor/associar-livro",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"autor",
+								"associar-livro"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Livros",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/livro",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"livro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/livro/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"livro",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "titulo",
+									"value": "teste",
+									"type": "text"
+								},
+								{
+									"key": "editora",
+									"value": "teste 1",
+									"type": "text"
+								},
+								{
+									"key": "edicao",
+									"value": "99",
+									"type": "text"
+								},
+								{
+									"key": "anoPublicacao",
+									"value": "2024",
+									"type": "text"
+								},
+								{
+									"key": "preco",
+									"value": "100.99",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/livro",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"livro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "titulo",
+									"value": "Teste",
+									"type": "text"
+								},
+								{
+									"key": "editora",
+									"value": "teste",
+									"type": "text"
+								},
+								{
+									"key": "edicao",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "anoPublicacao",
+									"value": "2010",
+									"type": "text"
+								},
+								{
+									"key": "preco",
+									"value": "100.10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/livro/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"livro",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/api/livro/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"livro",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Autor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "codL",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "arrayCodAu[0]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "arrayCodAu[1]",
+									"value": "3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/livro/associar-autor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"livro",
+								"associar-autor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add  Assunto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "codL",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "arrayCodAs[0]",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/livro/associar-assunto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"livro",
+								"associar-assunto"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assuntos",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/assunto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"assunto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/assunto/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"assunto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "descricao",
+									"value": "Teste",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/assunto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"assunto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "descricao",
+									"value": "tste",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/assunto/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"assunto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/api/assunto/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"assunto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Livro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "codAs",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "arrayCodL[0]",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "arrayCodL[1]",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/assunto/associar-livro",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"assunto",
+								"associar-livro"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Index",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost",
+			"type": "string"
+		}
+	]
+}

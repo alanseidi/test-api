@@ -13,3 +13,7 @@ Projeto API para realização de testes
 - `make start` - inicia os container do docker via sail up
 - `make fresh-seed` - limpa o banco e roda as migrations
 - `make run-tests` - executas os testes
+
+# Postman
+
+Importe o arquivo localizado na pasta postman para ver os exemplos das requisições
